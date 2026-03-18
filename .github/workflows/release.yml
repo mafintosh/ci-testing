@@ -14,7 +14,6 @@ on:
 
 jobs:
   release:
-    environment: release
     uses: tetherto/actions/.github/workflows/publish-release.yml@main
     with:
       bump: ${{ inputs.bump }}
