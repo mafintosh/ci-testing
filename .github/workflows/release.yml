@@ -14,7 +14,7 @@ on:
 
 jobs:
   release:
-    uses: tetherto/actions/.github/workflows/publish-release.yml@main
+    uses: tetherto/actions/.github/workflows/public-publish.yml@main
     with:
       bump: ${{ inputs.bump }}
     secrets:
