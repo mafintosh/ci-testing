@@ -1,4 +1,4 @@
-name: Release
+name: Release to public NPM
 
 on:
   workflow_dispatch:
@@ -12,9 +12,12 @@ on:
           - minor
           - major
 
+permissions:
+  contents: write
+
 jobs:
   release:
-    uses: tetherto/actions/.github/workflows/public-publish.yml@main
+    uses: tetherto/actions/.github/workflows/publish-release.yml@main
     with:
       bump: ${{ inputs.bump }}
     secrets:
