@@ -1,0 +1,22 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version bump type
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  release:
+    environment: release
+    uses: tetherto/actions/.github/workflows/publish-release.yml@main
+    with:
+      bump: ${{ inputs.bump }}
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
