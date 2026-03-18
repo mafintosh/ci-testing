@@ -1,4 +1,5 @@
 name: Release to public npm
+run-name: "Release (${{ inputs.bump }})"
 
 on:
   workflow_dispatch:
