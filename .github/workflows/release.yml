@@ -1,4 +1,4 @@
-name: Release to public NPM
+name: Release to public npm
 
 on:
   workflow_dispatch:
