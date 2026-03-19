@@ -12,10 +12,9 @@ on:
           - patch
           - minor
           - major
-
 permissions:
   contents: write
-
+  id-token: write
 jobs:
   release:
     uses: mafintosh/actions/.github/workflows/public-publish.yml@review
