@@ -1,6 +1,5 @@
 name: Release to public npm
-run-name: "Release (${{ inputs.bump }})"
-
+run-name: "Release (${{ inputs.bump }}${{ inputs.preid && format('-{0}', inputs.preid) || '' }})"
 on:
   workflow_dispatch:
     inputs:
@@ -12,13 +11,19 @@ on:
           - patch
           - minor
           - major
+          - prerelease
+      preid:
+        description: Pre-release identifier (e.g. alpha, beta, rc) — only used with pre* bump types
+        required: false
+        type: string
 permissions:
   contents: write
   id-token: write
 jobs:
   release:
-    uses: mafintosh/actions/.github/workflows/public-publish.yml@review
+    uses: tetherto/actions/.github/workflows/public-publish.yml@main
     with:
       bump: ${{ inputs.bump }}
+      preid: ${{ inputs.preid }}
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
