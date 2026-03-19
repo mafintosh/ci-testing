@@ -6,13 +6,13 @@ on:
       - main
 jobs:
   approve-release:
-    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.title, 'Release: ')
+    if: ${{ github.event.pull_request.merged == true && startsWith(github.event.pull_request.title, 'Release: ') }}
     runs-on: ubuntu-latest
     environment: release
     steps:
       - run: echo "Approved"
   publish:
     needs: approve-release
+    if: ${{ github.event.pull_request.merged == true && startsWith(github.event.pull_request.title, 'Release: ') }}
     uses: mafintosh/actions/.github/workflows/auto-publish.yml@main
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    secrets: inherit
