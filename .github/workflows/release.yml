@@ -13,17 +13,23 @@ on:
           - major
           - prerelease
       preid:
-        description: Pre-release identifier (e.g. alpha, beta, rc) — only used with pre* bump types
+        description: Pre-release identifier
         required: false
+        type: string
+      tag:
+        description: npm dist-tag
+        required: false
+        default: 'latest'
         type: string
 permissions:
   contents: write
   id-token: write
 jobs:
   release:
-    uses: mafintosh/actions/.github/workflows/public-publish.yml@main
+    uses: tetherto/actions/.github/workflows/public-publish.yml@main
     with:
       bump: ${{ inputs.bump }}
       preid: ${{ inputs.preid }}
+      tag: ${{ inputs.tag }}
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
