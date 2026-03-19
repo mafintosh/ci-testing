@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: lts/*
           registry-url: 'https://registry.npmjs.org'
+      - run: npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: |
           VERSION=$(node -p "require('./package.json').version")
           PR_TITLE="${{ github.event.pull_request.title }}"
