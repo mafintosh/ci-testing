@@ -17,6 +17,6 @@ jobs:
     permissions:
       contents: write
       id-token: write
-    uses: mafintosh/actions/.github/workflows/auto-publish.yml@main
+    uses: mafintosh/actions/.github/workflows/public-publish.yml@main
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
