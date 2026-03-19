@@ -13,6 +13,6 @@ jobs:
       - run: echo "Approved"
   publish:
     needs: approve-release
-    uses: mafintosh/actions/.github/workflows/publish.yml@main
+    uses: mafintosh/actions/.github/workflows/auto-publish.yml@main
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
