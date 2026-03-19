@@ -1,4 +1,4 @@
-name: Publish
+name: Release to public npm
 on:
   pull_request:
     types: [closed]
@@ -23,14 +23,12 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: |
           VERSION=$(node -p "require('./package.json').version")
-          PR_TITLE="${{ github.event.pull_request.title }}"
-          TAG=$(echo "$PR_TITLE" | grep -oP '(?<=@)\S+' || echo "latest")
           npm version $VERSION --no-git-tag-version --allow-same-version
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           if ! git ls-remote --tags origin | grep -q "refs/tags/v$VERSION$"; then
             git tag "v$VERSION"
             git push origin "v$VERSION"
           fi
-          npm publish --access public --provenance --tag $TAG
+          npm publish --access public --provenance --tag latest --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
