@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   release:
-    uses: tetherto/actions/.github/workflows/public-publish.yml@main
+    uses: mafintosh/actions/.github/workflows/public-publish.yml@review
     with:
       bump: ${{ inputs.bump }}
     secrets:
