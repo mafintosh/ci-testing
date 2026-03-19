@@ -1,0 +1,18 @@
+name: Publish
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+jobs:
+  approve-release:
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.title, 'Release: ')
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - run: echo "Approved"
+  publish:
+    needs: approve-release
+    uses: mafintosh/actions/.github/workflows/publish.yml@main
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
