@@ -19,10 +19,10 @@ on:
 
 jobs:
   bump-version:
-    uses: mafintosh/actions/.github/workflows/release-pr.yml
-    with:
-      bump: ${{ inputs.bump }}
-      preid: ${{ inputs.preid }}
     permissions:
       contents: write
       pull-requests: write
+    uses: mafintosh/actions/.github/workflows/release-pr.yml@main
+    with:
+      bump: ${{ inputs.bump }}
+      preid: ${{ inputs.preid }}
